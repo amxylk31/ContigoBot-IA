@@ -10,6 +10,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.12.1"
+    "@astrojs/react": "^3.6.1",
+    "@fontsource-variable/outfit": "^5.0.14",
+    "@fontsource-variable/quicksand": "^5.0.19",
+    "@fontsource/anton": "^5.0.21",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^4.12.1",
+    "bootstrap": "^5.3.3",
+    "ninja-keys": "^1.2.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.77.8"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.10"
   }
 }
