@@ -6,16 +6,17 @@ import Footer from '../components/Footer.astro'
 import '@fontsource/anton';
 import '@fontsource-variable/quicksand';
 import '@fontsource-variable/outfit';
+import DriverTour from '../components/DriverTour.astro';
 ---
 
 <Layout title="ContigoBot">
   <Header
-    texto1="Inicio de Sesión"
-    link1="signin"
-    texto2="Registrarse"
-    link2="register"
-    texto3="Chatbot"
-    link3="/src/pages/chat.astro"
+	texto1="Registrarse"
+    link1="register"
+    texto2="Inicio de Sesión"
+    link2="signin"
+    texto3="Términos y Condiciones"
+    link3="/src/pages/Terms&Conditions.astro"
   />
 
 <section class="body">
@@ -139,8 +140,10 @@ import '@fontsource-variable/outfit';
   </section>
 </section>
 
+  <DriverTour />
+
   <Footer />
- 
+	
   <style>
 
 	/* ESTILOS SECCION 0 */

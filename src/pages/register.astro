@@ -2,9 +2,10 @@
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.astro'
 import '@fontsource-variable/outfit';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout title="Registro">
+<Layout title="Sign Up - ContigoBot">
   <link
     rel="stylesheet"
     type="text/css"
@@ -12,7 +13,14 @@ import '@fontsource-variable/outfit';
   />
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   
-  <Header class="header" />
+  <Header class="header" 
+    texto1="Registrarse"
+    link1="register"
+    texto2="Inicio de Sesión"
+    link2="signin"
+    texto3="Términos y Condiciones"
+    link3="/src/pages/Terms&Conditions.astro"
+    />
   <div class="body">
     <p class="registration-text">
       ¿Ya tienes una cuenta? <a href="/signin">Iniciar sesión</a>
@@ -23,13 +31,19 @@ import '@fontsource-variable/outfit';
       <label for="email">Correo electrónico</label>
       <input type="email" name="email" id="email" placeholder="Ingresa tu correo electrónico" />
       <label for="password">Contraseña</label>
-      <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" />
+      <div class="password-container">
+        <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" />
+        <img src="/Show.png" alt="" class="icon" id="eye">
+      </div>
       <button type="submit" id="buttonSub">Registrarse</button>
     </form>
   </div>
+    <script src="../resources/password.js"></script>
+  </div>
+  <Footer />
 </Layout>
 <script>
-  
+
   import { showMessage } from '../resources/notification'
   
   document.getElementById('register-form').addEventListener('submit', async (event) => {
@@ -51,6 +65,24 @@ import '@fontsource-variable/outfit';
 </script>
 
 <style>
+  .password-container {
+    position: relative;
+    font-family: 'Outfit Variable', sans-serif;
+  }
+  #password {
+    width: 100%;
+    padding-right: 40px;
+  }
+  .icon{
+    position: absolute;
+    height: 40%;
+    position: absolute;
+    top: 40%;
+    right: 8px;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    cursor: pointer;
+  }
   .cont-form {
     background-color: var(--background-color);
     transition: background-color 0.8s ease;
@@ -58,17 +90,16 @@ import '@fontsource-variable/outfit';
     font-family: 'Outfit Variable', sans-serif;
   }
   form {
-    display: flex;
-    flex-direction: column;
-    max-width: 100vh;
+    max-width: 380px;
     margin: 0 auto;
-    height: 50vh;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #fcdef4;
+    background: url('/fondo.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 10vh;
     font-family: 'Outfit Variable', sans-serif;
-    gap: 10px;
+    margin-bottom: 185px;
   }
   label {
     display: block;
@@ -86,28 +117,26 @@ import '@fontsource-variable/outfit';
   }
 
   button {
-    position: absolute;
-    bottom: 30vh;
-    left: 50%;
-    transform: translateX(-50%);
     background-color: #fcb97a;
     color: #000000;
     border: none;
     border-radius: 3px;
+    padding: 10px 20px;
     cursor: pointer;
-    padding: 10px 15px;
+    font-family: 'Outfit Variable', sans-serif;
+    height: 45px;
+    width: 100%;
   }
 
   .check-cont {
     display: flex;
   }
-
   input[type='checkbox'] {
     width: 10vh;
     margin-right: 1px;
   }
   button:hover {
-    background-color: #d67403;
+    background-color: #e49337;
   }
 
   .registration-text {
@@ -115,7 +144,7 @@ import '@fontsource-variable/outfit';
     font-size: 18px;
     font-weight: bold;
     font-family: 'Outfit Variable', sans-serif;
-    padding-top: 5%;
+    padding-top: 180px;
   }
   .registration-text a {
     font-size: 18px;
@@ -133,8 +162,6 @@ import '@fontsource-variable/outfit';
     font-size: 16px;
   }
   body {
-    background: url('/fondo.jpeg') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 90vh;
+    background: white;
   }
 </style>

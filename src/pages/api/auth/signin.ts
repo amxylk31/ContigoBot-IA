@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { app } from "../../../firebase/server";
 import { getAuth } from "firebase-admin/auth";
+import { getFirestore } from "firebase-admin/firestore";
 
 export const GET: APIRoute = async ({ request, cookies, redirect }) => {
   const auth = getAuth(app);
@@ -15,13 +16,33 @@ export const GET: APIRoute = async ({ request, cookies, redirect }) => {
   }
 
   /* Verificar la id del token */
+  let decodedToken;
   try {
-    await auth.verifyIdToken(idToken);
+    decodedToken = await auth.verifyIdToken(idToken);
   } catch (error) {
     return new Response(
-      "Token invalido",
+      "Token inválido",
       { status: 401 }
     );
+  }
+
+  const db = getFirestore(app);
+  const uid = decodedToken.uid;
+  const email = decodedToken.email;
+  const displayName = decodedToken.name;
+
+  /* Guardar o actualizar el usuario en Firestore */
+  if (email) {
+    try {
+      const userRef = db.collection("users").doc(uid);
+      await userRef.set({
+        email,
+        name: displayName,
+      }, { merge: true }); // Usar merge para actualizar solo los campos que cambian
+    } catch (error) {
+      console.error("Error al guardar los datos del usuario en Firestore: ", error);
+      // Opcionalmente puedes manejar el error de forma diferente
+    }
   }
 
   /* Crear y establecer una cookie de sesión */
@@ -31,7 +52,14 @@ export const GET: APIRoute = async ({ request, cookies, redirect }) => {
   });
 
   cookies.set("__session", sessionCookie, {
-    path: "/",
+    path: '/',
+    domain: undefined,
+    expires: new Date(Date.now() + fiveDays),
+    maxAge: undefined,
+    httpOnly: false,
+    sameSite: undefined,
+    secure: undefined,
+    encode: undefined
   });
 
   return redirect("/dashboard");

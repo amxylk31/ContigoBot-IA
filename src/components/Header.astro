@@ -12,9 +12,9 @@ const { texto1, texto2, texto3, link1, link2, link3} = Astro.props
     </a>
     <p class="nom_pag">CONTIGOBOT</p>
     <nav class="navegador">
-      <a href={link1}>{texto1}</a>
-      <a href={link2}>{texto2}</a>
-      <a href={link3}>{texto3}</a>
+      <a href={link1} data-tour="register-link">{texto1}</a>
+      <a href={link2} data-tour="signin-link">{texto2}</a>
+      <a href={link3} data-tour="terms-link">{texto3}</a>
     </nav>
   </div>
 </header>

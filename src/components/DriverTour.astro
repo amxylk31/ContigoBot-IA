@@ -1,0 +1,74 @@
+<script>
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+import '@fontsource-variable/outfit';
+
+const driverObj = driver({
+  showProgress: true,
+  showButtons: ['next', 'previous'],
+  onDestroyStarted: () => {
+    if (!driverObj.hasNextStep() || confirm("¿Estás seguro?")) {
+      driverObj.destroy();
+    }
+  },
+  steps: [
+  { 
+    element: '[data-tour="register-link"]', 
+    popover: { 
+      title: 'Registro', 
+      description: 'Aquí puedes registrarte en ContigoBot.',
+      side: "bottom", 
+      align: "center"
+    }
+  },
+  { 
+    element: '[data-tour="signin-link"]', 
+    popover: { 
+      title: 'Inicio de Sesión', 
+      description: 'Inicia sesión para acceder a tu cuenta de ContigoBot. También puedes iniciar sesión usando tu cuenta de Google. Después de iniciar sesión, serás llevado automáticamente al chatbot para que puedas comenzar a conversar con él.', 
+      side: "bottom", 
+      align: 'center' 
+    }
+  },
+  { 
+    element: '.sec0', 
+    popover: { 
+      title: 'Salud Mental en Estudiantes Universitarios', 
+      description: 'Aquí se ofrece una visión general de la importancia de la salud mental para los estudiantes universitarios y cómo ContigoBot puede ayudar.',
+      side: "top", 
+      align: 'center' 
+    }
+  },
+  { 
+    element: '.sec1', 
+    popover: { 
+      title: '¿Qué es ContigoBot?', 
+      description: 'ContigoBot es un innovador chatbot que proporciona apoyo emocional y consejos útiles para los estudiantes universitarios.',
+      side: "left", 
+      align: 'start' 
+    }
+  },
+  { 
+    element: '.sec2', 
+    popover: { 
+      title: 'Nuestros Servicios', 
+      description: 'Descubre los servicios que ContigoBot ofrece, como inteligencia artificial, autocuidado, y apoyo emocional personalizado.',
+      side: "right", 
+      align: 'start' 
+    }
+  },
+  { 
+    element: '.sec3', 
+    popover: { 
+      title: 'Recursos Adicionales y Preguntas Frecuentes', 
+      description: 'Aquí encontrarás enlaces a recursos adicionales sobre salud mental que pueden ser útiles. También puedes encontrar respuestas a las preguntas frecuentes que podrían ayudarte a comprender mejor cómo utilizar ContigoBot.',
+      side: "left", 
+      align: 'start' 
+    }
+  }
+  ]
+
+});
+
+driverObj.drive();
+</script>
