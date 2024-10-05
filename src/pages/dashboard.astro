@@ -1,0 +1,43 @@
+---
+import { app } from "../firebase/server";
+import { getAuth } from "firebase-admin/auth";
+import Layout from "../layouts/Layout.astro";
+import Header from '../components/Header.astro';
+import Chatbot from '../components/Chat/Chat.jsx';
+import '@fontsource-variable/outfit';
+
+const auth = getAuth(app);
+
+/* Verificar la sesión actual */
+if (!Astro.cookies.has("__session")) {
+  return Astro.redirect("/signin");
+}
+const sessionCookie = Astro.cookies.get("__session").value;
+const decodedCookie = await auth.verifySessionCookie(sessionCookie);
+const user = await auth.getUser(decodedCookie.uid);
+
+if (!user) {
+  return Astro.redirect("/signin");
+}
+---
+
+<Layout title="dashboard">
+    <main class="cont-fondo">
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+        />
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    </main>
+    <Header
+        texto1={user.displayName}
+        texto2="Términos y Condiciones"
+        link2="/src/pages/Terms&Conditions.astro"
+        texto3="Cerrar Sesión"
+        link3="/api/auth/signout"
+    />
+    <Chatbot uid={user.uid} client:load/>
+</Layout>
+
+

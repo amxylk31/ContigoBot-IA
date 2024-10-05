@@ -1,0 +1,278 @@
+---
+import { app } from '../firebase/server'
+import { getAuth } from 'firebase-admin/auth'
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import '@fontsource-variable/outfit';
+import Footer from '../components/Footer.astro';
+/* Verificar si el usuario está autenticado */
+const auth = getAuth(app)
+if (Astro.cookies.has('__session')) {
+  const sessionCookie = Astro.cookies.get('__session').value
+  const decodedCookie = await auth.verifySessionCookie(sessionCookie)
+  if (decodedCookie) {
+    return Astro.redirect('/dashboard')
+  }
+}
+---
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+/>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<Layout title="Login - ContigoBot">
+  <div class="body">
+    <Header
+      texto1="Registrarse"
+      link1="register"
+      texto2="Inicio de Sesión"
+      link2="signin"
+      texto3="Términos y Condiciones"
+      link3="/src/pages/Terms&Conditions.astro"
+    />
+    <div class="cont-form">
+      <p class="signin-text">
+        ¿Eres nuevo aquí? <a href="/register">Crear una cuenta</a>
+      </p>
+      <form action="/api/auth/signin" method="post">
+        <label for="email" for="email">Email</label>
+        <input type="email" name="email" id="email" />
+        <label for="password">Contraseña</label>
+        <div class="password-container">
+          <input type="password" name="password" id="password" />
+          <img src="/Show.png" alt="" class="icon" id="eye">
+        </div>
+        <button type="submit">Iniciar sesión</button>
+      </form>
+    </div>
+    <div class="divider-wrapper">
+      <span class="divider">o</span>
+    </div>
+    <div class="seccion-social">
+      <button id="google"  class="social-btn">
+        <span class="social-logo-wrapper">
+          <img class="social-logo" src="google-logo-NePEveMl.svg" alt="Logo de Google">
+        </span>
+        <span class="social-text">Continuar con Google</span>
+      </button>
+    </div>
+    <script src="../resources/password.js"></script>
+  </div>
+  <Footer />
+</Layout>
+
+<script>
+  import { getAuth, inMemoryPersistence, signInWithEmailAndPassword, GoogleAuthProvider,signInWithPopup, } from 'firebase/auth'
+  import { app } from '../firebase/client'
+  import { showMessage } from '../resources/notification'
+  const auth = getAuth(app)
+  // Esto evitará que el navegador almacene los datos de sesión
+  auth.setPersistence(inMemoryPersistence)
+
+  const form = document.querySelector('form') as HTMLFormElement
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    const formData = new FormData(form)
+    const email = formData.get('email')?.toString()
+    const password = formData.get('password')?.toString()
+
+    if (!email || !password) {
+      return
+    }
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      const idToken = await userCredential.user.getIdToken()
+      const response = await fetch('/api/auth/signin', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${idToken}`
+        }
+      })
+
+      if (response.redirected) {
+        showMessage('Iniciando sesión por favor espere...')
+        setTimeout(() => {
+          window.location.assign(response.url)
+        }, 2000)
+      }
+    } catch {
+      showMessage('Error al iniciar sesión por favor verifique correo y contraseña ', 'ERROR')
+    }
+  })
+  const googleSignin = document.querySelector("#google") as HTMLButtonElement;
+  
+  googleSignin.addEventListener("click", async () => {
+  const provider = new GoogleAuthProvider();
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const idToken = await result.user.getIdToken();
+
+    // Enviar el token al backend para iniciar sesión y guardar datos
+    const response = await fetch("/api/auth/signin", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${idToken}`,
+      },
+    });
+
+    if (response.redirected) {
+        showMessage('Iniciando sesión por favor espere...')
+        setTimeout(() => {
+          window.location.assign(response.url)
+        }, 2000)
+      }
+  } catch (error) {
+    showMessage('Error al iniciar sesión con Google', 'ERROR');
+  }
+});
+</script>
+
+<style>
+  .divider-wrapper {
+    display: flex;
+    flex-direction: row;
+    text-transform: uppercase;
+    border: none;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+    padding: 24px 0 0;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    vertical-align: baseline;
+    padding-left: 960px;
+  }
+  .divider {
+    text-align: center;
+    flex: .2 0 auto;
+    margin: 0;
+    height: 12px;
+    font-family: 'Outfit Variable', sans-serif;
+  }
+  .seccion-social {
+    margin-top: 24px;
+    padding-left: 785px;
+
+  }
+  .social-btn {
+    padding: 0 8px 0 52px;
+  }
+  .social-btn {
+    position: relative;
+    width: 354px;
+    border: 1px solid #a7a5a4;
+    border-radius: 6px;
+    font-size: 16px;
+    align-items: center;
+    background-color: #ffffff;
+    height: 45px;
+    transition: box-shadow .15s ease-in-out, background-color .15s ease-in-out;
+    cursor: pointer;
+    color: #000000;
+    margin-bottom: 150px;
+    display: flex;
+    outline: 0;
+  }
+  .social-btn:hover {
+    background-color: #f7abab;
+  }
+  .social-logo {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 50px;
+    margin-left: -25px;
+  }
+  .social-text {
+    font-family: 'Outfit Variable', sans-serif;
+  }
+  img {
+    overflow: clip;
+    position: left;
+  }
+  .password-container {
+    position: relative;
+    font-family: 'Outfit Variable', sans-serif;
+  }
+  #password {
+    width: 100%;
+    padding-right: 40px;
+  }
+  .icon{
+    position: absolute;
+    height: 40%;
+    position: absolute;
+    top: 40%;
+    right: 8px;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    cursor: pointer;
+  }
+  .cont-form {
+    background-color: var(--background-color);
+    transition: background-color 0.8s ease;
+    margin-top: 20vh;
+  }
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Outfit Variable', sans-serif;
+    background: url('/fondo.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 10vh;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: var(--background-color-chat-dark);
+    font-family: 'Outfit Variable', sans-serif;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: var(--background-color-chat-dark);
+  }
+
+  button {
+    background-color: #fcb97a;
+    color: #000000;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Outfit Variable', sans-serif;
+    height: 100%;
+    width: 100%;
+  }
+
+  button:hover {
+    background-color: #e49337;
+  }
+
+  .signin-text {
+    padding-top: 110px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Outfit Variable', sans-serif;
+  }
+  .signin-text a{
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Outfit Variable', sans-serif;
+    color: #bc62f8;
+  }
+</style>

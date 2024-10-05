@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import '@fontsource-variable/outfit';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Sign Up - ContigoBot">
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+  />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  
+  <Header class="header" 
+    texto1="Registrarse"
+    link1="register"
+    texto2="Inicio de Sesión"
+    link2="signin"
+    texto3="Términos y Condiciones"
+    link3="/src/pages/Terms&Conditions.astro"
+    />
+  <div class="body">
+    <p class="registration-text">
+      ¿Ya tienes una cuenta? <a href="/signin">Iniciar sesión</a>
+    </p>
+    <form id="register-form" action="/api/auth/register" method="post" enctype="multipart/form-data">
+      <label for="name">Nombre</label>
+      <input type="text" name="name" id="name" placeholder="Ingresa tu nombre" />
+      <label for="email">Correo electrónico</label>
+      <input type="email" name="email" id="email" placeholder="Ingresa tu correo electrónico" />
+      <label for="password">Contraseña</label>
+      <div class="password-container">
+        <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" />
+        <img src="/Show.png" alt="" class="icon" id="eye">
+      </div>
+      <button type="submit" id="buttonSub">Registrarse</button>
+    </form>
+  </div>
+    <script src="../resources/password.js"></script>
+  </div>
+  <Footer />
+</Layout>
+<script>
+
+  import { showMessage } from '../resources/notification'
+  
+  document.getElementById('register-form').addEventListener('submit', async (event) => {
+    event.preventDefault()
+
+    const form = event.target as HTMLFormElement
+    const formData = new FormData(form)
+    const response = await fetch('/api/auth/register', { method: 'POST', body: formData })
+    const data = await response.json()
+
+    showMessage(data.message, data.status === 200 ? 'success' : 'error')
+
+    if (data.status === 200) {
+      setTimeout(() => {
+        window.location.href = '/signin'
+      }, 2000)
+    }
+  })
+</script>
+
+<style>
+  .password-container {
+    position: relative;
+    font-family: 'Outfit Variable', sans-serif;
+  }
+  #password {
+    width: 100%;
+    padding-right: 40px;
+  }
+  .icon{
+    position: absolute;
+    height: 40%;
+    position: absolute;
+    top: 40%;
+    right: 8px;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    cursor: pointer;
+  }
+  .cont-form {
+    background-color: var(--background-color);
+    transition: background-color 0.8s ease;
+    margin-top: 20vh;
+    font-family: 'Outfit Variable', sans-serif;
+  }
+  form {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: url('/fondo.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 10vh;
+    font-family: 'Outfit Variable', sans-serif;
+    margin-bottom: 185px;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: 'Outfit Variable', sans-serif;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  button {
+    background-color: #fcb97a;
+    color: #000000;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Outfit Variable', sans-serif;
+    height: 45px;
+    width: 100%;
+  }
+
+  .check-cont {
+    display: flex;
+  }
+  input[type='checkbox'] {
+    width: 10vh;
+    margin-right: 1px;
+  }
+  button:hover {
+    background-color: #e49337;
+  }
+
+  .registration-text {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Outfit Variable', sans-serif;
+    padding-top: 180px;
+  }
+  .registration-text a {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Outfit Variable', sans-serif;
+    color: #bc62f8
+  }  
+
+  <style > .contenedor {
+    display: flex;
+    justify-content: end;
+  }
+
+  #password {
+    font-size: 16px;
+  }
+  body {
+    background: white;
+  }
+</style>
