@@ -23,7 +23,9 @@ Dentro de su proyecto Astro, verá las siguientes carpetas y archivos:
 
 # Arquitectura del Proyecto
 
-ContigoBot está construido utilizando una arquitectura de microservicios, lo que permite que sus diferentes componentes funcionen de manera independiente y escalable. Esta arquitectura facilita el desarrollo, implementación y mantenimiento del sistema, ya que cada microservicio se encarga de una funcionalidad específica, como la gestión de usuarios, el procesamiento de interacciones con el chatbot, y el almacenamiento de datos en Firebase. Además, al estar integrado con tecnologías modernas, el proyecto garantiza una experiencia de usuario fluida y segura, asegurando que el sistema pueda crecer y adaptarse a futuras necesidades sin comprometer su rendimiento.
+ContigoBot está construido utilizando una arquitectura mixta de cloud y cliente-servidor, aprovechando las ventajas de ambos enfoques para ofrecer un sistema ágil y escalable. En este modelo, Firebase actúa como el servidor, proporcionando funcionalidades de backend como el almacenamiento de datos y la gestión de usuarios, mientras que Vercel se encarga del cliente, ofreciendo un entorno de despliegue rápido y eficiente para las interfaces de usuario y el frontend.
+
+Esta combinación permite que el sistema sea flexible, escalable y altamente disponible, ya que cada componente puede operar de forma independiente y aprovechar las capacidades específicas de cada plataforma. Además, esta arquitectura asegura una experiencia de usuario fluida y segura, garantizando que el sistema pueda crecer y adaptarse a futuras necesidades sin comprometer el rendimiento.
 
 # Impacto Esperado
 
