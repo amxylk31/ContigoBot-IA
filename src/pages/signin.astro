@@ -31,7 +31,7 @@ if (Astro.cookies.has('__session')) {
       texto2="Inicio de Sesión"
       link2="signin"
       texto3="Términos y Condiciones"
-      link3="/src/pages/Terms&Conditions.astro"
+      link3="TermsAndConditions"
     />
     <div class="cont-form">
       <p class="signin-text">
@@ -45,19 +45,19 @@ if (Astro.cookies.has('__session')) {
           <input type="password" name="password" id="password" />
           <img src="/Show.png" alt="" class="icon" id="eye">
         </div>
+        <div class="divider-wrapper">
+          <span class="divider">o</span>
+        </div>
+        <div class="seccion-social">
+          <button id="google"  class="social-btn">
+            <span class="social-logo-wrapper">
+              <img class="social-logo" src="google-logo-NePEveMl.svg" alt="Logo de Google">
+            </span>
+            <span class="social-text">Continuar con Google</span>
+          </button>
+        </div>
         <button type="submit">Iniciar sesión</button>
       </form>
-    </div>
-    <div class="divider-wrapper">
-      <span class="divider">o</span>
-    </div>
-    <div class="seccion-social">
-      <button id="google"  class="social-btn">
-        <span class="social-logo-wrapper">
-          <img class="social-logo" src="google-logo-NePEveMl.svg" alt="Logo de Google">
-        </span>
-        <span class="social-text">Continuar con Google</span>
-      </button>
     </div>
     <script src="../resources/password.js"></script>
   </div>
@@ -139,23 +139,19 @@ if (Astro.cookies.has('__session')) {
     font-size: 12px;
     font-weight: 400;
     margin: 0;
-    padding: 24px 0 0;
     align-items: center;
     justify-content: center;
     width: 320px;
     vertical-align: baseline;
-    padding-left: 960px;
   }
   .divider {
     text-align: center;
-    flex: .2 0 auto;
-    margin: 0;
     height: 12px;
     font-family: 'Outfit Variable', sans-serif;
+    padding-left: 40px;
   }
   .seccion-social {
     margin-top: 24px;
-    padding-left: 785px;
 
   }
   .social-btn {
@@ -163,7 +159,7 @@ if (Astro.cookies.has('__session')) {
   }
   .social-btn {
     position: relative;
-    width: 354px;
+    width: 100%;
     border: 1px solid #a7a5a4;
     border-radius: 6px;
     font-size: 16px;
@@ -173,7 +169,7 @@ if (Astro.cookies.has('__session')) {
     transition: box-shadow .15s ease-in-out, background-color .15s ease-in-out;
     cursor: pointer;
     color: #000000;
-    margin-bottom: 150px;
+    margin-bottom: 20px;
     display: flex;
     outline: 0;
   }
@@ -189,6 +185,8 @@ if (Astro.cookies.has('__session')) {
   }
   .social-text {
     font-family: 'Outfit Variable', sans-serif;
+    text-align: center;
+    padding-left: 10px;
   }
   img {
     overflow: clip;
@@ -216,6 +214,7 @@ if (Astro.cookies.has('__session')) {
     background-color: var(--background-color);
     transition: background-color 0.8s ease;
     margin-top: 20vh;
+    padding-bottom: 152px;
   }
   form {
     max-width: 400px;
@@ -224,7 +223,7 @@ if (Astro.cookies.has('__session')) {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-family: 'Outfit Variable', sans-serif;
-    background: url('/fondo.jpeg') no-repeat center center fixed;
+    background: url('/fondo.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 10vh;
   }

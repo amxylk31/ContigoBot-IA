@@ -16,26 +16,30 @@ import DriverTour from '../components/DriverTour.astro';
     texto2="Inicio de Sesión"
     link2="signin"
     texto3="Términos y Condiciones"
-    link3="/src/pages/Terms&Conditions.astro"
+    link3="TermsAndConditions"
   />
 
 <section class="body">
-  <section class="sec0">
-    <div class="background-image">
-      <div class="text-container">
-        <span class="highlight">Salud Mental</span> <h1 class="tit0">en Estudiantes Universitarios</h1>
-        <p class="parrafo_sec0">
-          La vida universitaria es una etapa emocionante pero también desafiante para muchos estudiantes. Entre las responsabilidades académicas, sociales y personales, 
-          es común que los estudiantes enfrenten altos niveles de estrés, ansiedad y, en algunos casos, depresión. La presión para mantener un buen rendimiento académico, 
-          cumplir con las expectativas sociales y manejar la independencia puede ser abrumadora.
-          <br><br>
-          Es crucial que los estudiantes reconozcan la importancia de cuidar su salud mental. La gestión del estrés, el equilibrio entre la vida académica y personal, 
-          y la búsqueda de apoyo emocional son fundamentales para mantener un bienestar integral. Los recursos y herramientas disponibles, como ContigoBot, pueden ofrecer 
-          ayuda y orientación en este camino, proporcionando estrategias útiles para enfrentar los desafíos diarios y mantener un equilibrio saludable.
-        </p>
-      </div>
-    </div>
-  </section>
+	<section class="sec0">
+		<span class="highlight">Salud Mental</span> 
+		<h1 class="tit0">en Estudiantes Universitarios</h1>
+		<p class="parrafo_sec0">
+
+			La vida universitaria es una etapa emocionante, pero también desafiante. Entre las responsabilidades académicas, sociales y personales, los estudiantes enfrentan 
+			altos niveles de estrés, ansiedad y, en algunos casos, depresión. La presión para mantener un buen rendimiento académico y cumplir con las expectativas sociales puede 
+			ser abrumadora.
+			La ansiedad es un problema común entre los estudiantes, y se manifiesta a través del miedo al fracaso, la preocupación por las calificaciones y el sentimiento de estar 
+			sobrecargado. Es importante reconocer que la ansiedad puede convertirse en un obstáculo real para el bienestar si no se maneja adecuadamente.
+			<br><br>
+			Es crucial cuidar la salud mental, gestionar el estrés y buscar apoyo emocional. Pedir ayuda es un acto de valentía y autocuidado. La terapia y el acompañamiento emocional s
+			on herramientas poderosas para entender y manejar las emociones difíciles.
+			ContigoBot es una herramienta digital diseñada para ayudar a los estudiantes a gestionar el estrés y la ansiedad. A través de interacciones sencillas y empáticas, ofrece 
+			estrategias de relajación y consejos prácticos para afrontar los desafíos emocionales comunes. Aunque no sustituye la terapia, puede ser útil cuando se necesita apoyo adicional.
+			<br><br>
+			Mantener un equilibrio saludable entre la vida académica y emocional es esencial para disfrutar de la experiencia universitaria de manera plena. ContigoBot está aquí para ofrecer 
+			ese acompañamiento y ser una ayuda accesible en el camino hacia una mejor salud mental.
+		</p>
+	  </section>
 
   <section class="sec1">
 	<h1 class="tit1">SOBRE CONTIGOBOT</h1>
@@ -43,7 +47,7 @@ import DriverTour from '../components/DriverTour.astro';
 	  <div class="row">
 		<div class="col-md-4">
 		  <div class="imagen-contenedor">
-			<img src="chatbot.jpeg" alt="Chatbot ContigoBot" class="img_chatbot" />
+			<img src="/chatbot.jpg" alt="Chatbot ContigoBot" class="img_chatbot" />
 			<p class="texto_imagen">
 			  ContigoBot es un innovador chatbot diseñado específicamente para brindar apoyo emocional a estudiantes universitarios. 
 			  Utiliza inteligencia artificial para proporcionar consejos y recursos que ayudan a gestionar el estrés y la ansiedad.
@@ -52,7 +56,7 @@ import DriverTour from '../components/DriverTour.astro';
 		</div>
 		<div class="col-md-4">
 		  <div class="imagen-contenedor">
-			<img src="estrés.jpeg" alt="Estrés Universitario" class="img_chatbot" />
+			<img src="/estrés.jpg" alt="Estrés Universitario" class="img_chatbot" />
 			<p class="texto_imagen">
 			  El estrés es común en la vida universitaria, pero ContigoBot está aquí para ayudarte a manejarlo. Ofrece estrategias y 
 			  técnicas para afrontar la presión académica y personal.
@@ -61,7 +65,7 @@ import DriverTour from '../components/DriverTour.astro';
 		</div>
 		<div class="col-md-4">
 		  <div class="imagen-contenedor">
-			<img src="chat.jpeg" alt="Estudiante Conversando" class="img_chatbot" />
+			<img src="/chat.jpg" alt="Estudiante Conversando" class="img_chatbot" />
 			<p class="texto_imagen">
 			  A través de interacciones privadas y anónimas, los estudiantes pueden encontrar en ContigoBot un compañero digital 
 			  que comprende sus desafíos y les brinda apoyo emocional y herramientas útiles.
@@ -145,56 +149,41 @@ import DriverTour from '../components/DriverTour.astro';
   <Footer />
 	
   <style>
+/* ESTILOS SECCION 0 */
+.sec0 {
+  position: relative;
+  width: 100%;
+  min-height: auto; /* Usamos min-height para asegurarnos de que la sección tenga suficiente altura */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  text-align: center; /* Centra el texto dentro de la sección */
+  z-index: 0;
+  color: #000000; /* Color del texto para que sea visible sobre el fondo */
+  padding: 60px 20px 20px; /* Agregamos más espacio arriba y abajo para evitar que el contenido se pegue al header */
+}
 
-	/* ESTILOS SECCION 0 */
-    .sec0 {
-      position: relative;
-      width: 100%;
-      height: 400px; /* Ajusta la altura según sea necesario */
-      margin-bottom: 20px;
-    }
+.sec0 .highlight {
+  font-size: 80px; /* Tamaño más grande para "Salud Mental" */
+  font-family: 'Anton', sans-serif; /* Fuente diferente para "Salud Mental" */
+  display: block; /* Para que el texto quede centrado y separado */
+}
 
-    .sec0 .background-image {
-      background-image: url('/saludmental1.png'); /* Reemplaza con la ruta de tu imagen */
-      background-size: cover; /* Asegura que la imagen cubra toda la sección */
-      background-position: center; /* Centra la imagen */
-      background-repeat: no-repeat; /* Evita que la imagen se repita */
-      width: 1903px;
-      height: 764px;
-      display: flex;
-      justify-content: flex-end; /* Alinea el contenido al borde derecho de la sección */
-      align-items: center; /* Centra el contenido verticalmente */
-	  padding-bottom: 15px;
-	  position: relative;
-	  margin-bottom: 10px;
-    }
+.sec0 .tit0 {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: 'Quicksand Variable', sans-serif;
+}
 
-    .sec0 .text-container {
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 40%; /* Ajusta el ancho del contenedor de texto según sea necesario */
-      color: #ffffff; /* Color del texto para que sea visible sobre el fondo */
-      margin-right: 20px; /* Espacio a la derecha del contenedor de texto */
-    }
-
-    .sec0 .tit0 {
-      font-size: 50px;
-      font-weight: bold;
-      margin-bottom: 20px;
-	  font-family: 'Quicksand Variable', sans-serif;
-    }
-	.sec0 .highlight {
-    font-size: 80px; /* Tamaño más grande para "Salud Mental" */
-    font-family: 'Anton', sans-serif;; /* Fuente diferente para "Salud Mental" */
-  }
-
-    .sec0 .parrafo_sec0 {
-      font-size: 20px;
-      line-height: 1.6;
-	  font-family: 'Outfit Variable', sans-serif;
-	  text-align: justify;
-    }
-
+.sec0 .parrafo_sec0 {
+  font-size: 20px;
+  line-height: 1.6;
+  font-family: 'Outfit Variable', sans-serif;
+  text-align: justify;
+  max-width: 80%; /* Limita el ancho del párrafo */
+}
 	/* ESTILOS SECCION 1 */
 	.container {
     display: flex;
@@ -203,13 +192,14 @@ import DriverTour from '../components/DriverTour.astro';
 	}
     .sec1 {
       padding: 100px;
-	  margin-top: 300px;
+	  margin-top: auto;
     }
 
     .sec1 .img_chatbot {
       width: 100%;
       max-width: 500px;
       border-radius: 20px;
+	  height: 100%;
     }
 
 	.texto_imagen {
@@ -231,7 +221,7 @@ import DriverTour from '../components/DriverTour.astro';
     /* ESTILOS SECCION 2 */
     .sec2 {
       padding: 50px 20px;
-      background-image: url('/fondo.jpeg') no-repeat center center fixed;
+      background-image: url('/fondo.jpg') no-repeat center center fixed;
 	  margin-top: -100px;
     }
 
@@ -321,7 +311,7 @@ import DriverTour from '../components/DriverTour.astro';
 
 	/* ESTILOS SECCION BODY */
 	body {
-      background: url('/fondo.jpeg') no-repeat center center fixed;
+      background: url('/fondo.jpg') no-repeat center center fixed;
       background-size: cover;
     }
 

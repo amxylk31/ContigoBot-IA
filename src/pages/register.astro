@@ -19,7 +19,7 @@ import Footer from '../components/Footer.astro';
     texto2="Inicio de Sesión"
     link2="signin"
     texto3="Términos y Condiciones"
-    link3="/src/pages/Terms&Conditions.astro"
+    link3="TermsAndConditions"
     />
   <div class="body">
     <p class="registration-text">
@@ -34,6 +34,14 @@ import Footer from '../components/Footer.astro';
       <div class="password-container">
         <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" />
         <img src="/Show.png" alt="" class="icon" id="eye">
+      </div>
+      <div class="check-cont">
+        <input type="checkbox" id="terms" name="terms" value="Si" required />
+        <label for="terms" class="checkbox-label"
+          >He leído y acepto los <a
+            href="TermsAndConditions">Términos y Condiciones.</a
+            ></label
+        ><br />
       </div>
       <button type="submit" id="buttonSub">Registrarse</button>
     </form>
@@ -63,6 +71,8 @@ import Footer from '../components/Footer.astro';
     }
   })
 </script>
+
+<script src="../resources/checkbox.js"></script>
 
 <style>
   .password-container {
@@ -95,11 +105,11 @@ import Footer from '../components/Footer.astro';
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background: url('/fondo.jpeg') no-repeat center center fixed;
+    background: url('/fondo.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 10vh;
     font-family: 'Outfit Variable', sans-serif;
-    margin-bottom: 185px;
+    margin-bottom: 117px;
   }
   label {
     display: block;
@@ -164,4 +174,32 @@ import Footer from '../components/Footer.astro';
   body {
     background: white;
   }
+  .check-cont {
+  display: flex;
+  align-items: center; /* Alinea los elementos en el centro verticalmente */
+  margin: 15px 0;
+}
+
+.check-cont input[type="checkbox"] {
+  width: 18px; /* Tamaño ajustado del checkbox */
+  height: 18px;
+  margin-right: 7px; /* Espacio entre el checkbox y el texto */
+  vertical-align: middle; /* Alinea el checkbox al centro verticalmente */
+}
+
+.checkbox-label {
+  font-size: 0.9rem; /* Ajusta el tamaño del texto */
+  font-family: 'Outfit Variable', sans-serif;
+  vertical-align: middle; /* Alinea el texto al centro del checkbox */
+  padding-bottom: 5px;
+}
+
+.checkbox-label a {
+  color: #bc62f8; /* Color del enlace */
+  text-decoration: none;
+}
+
+.checkbox-label a:hover {
+  text-decoration: underline; /* Subrayado al pasar el cursor */
+}
 </style>

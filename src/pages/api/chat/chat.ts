@@ -14,24 +14,53 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const db = getFirestore(app);
-    const chatRef = db.collection('historial_chat').doc(); // Usa el uid para identificar el documento
+    const chatRef = db.collection('historial_chat').doc(userUid);
 
-    // Obtén el documento actual para combinar los mensajes existentes
+    // Obtener los datos existentes para no sobrescribir
     const doc = await chatRef.get();
-    const existingData = doc.exists ? doc.data() : { messages: [] };
+    const existingData = doc.exists ? doc.data() : {};
 
-    // Agrega el nuevo mensaje a la lista de mensajes
-    const updatedMessages = [
-      ...existingData.messages,
-      { userUid, userMessage, aiMessage, timestamp: new Date() }
-    ];
+    // Contar el número de mensajes existentes
+    const messageCount = Object.keys(existingData).filter(key => key.startsWith('userMessage')).length;
 
-    // Actualiza el documento con la nueva lista de mensajes
-    await chatRef.set({ messages: updatedMessages });
+    // Construir nuevas claves para el nuevo mensaje
+    const newMessageData = {
+      [`userMessage${messageCount + 1}`]: userMessage,
+      [`aiMessage${messageCount + 1}`]: aiMessage,
+      [`timestamp${messageCount + 1}`]: new Date().toISOString(),
+    };
+
+    // Actualizar el documento con el nuevo mensaje
+    await chatRef.set(newMessageData, { merge: true });
 
     return new Response('Mensaje guardado', { status: 200 });
   } catch (error) {
     console.error('Error al guardar el mensaje en Firestore:', error);
     return new Response('Error al guardar el mensaje', { status: 500 });
+  }
+};
+
+export const GET: APIRoute = async ({ request }) => {
+  const { searchParams } = new URL(request.url);
+  const userUid = searchParams.get('uid');
+
+  if (!userUid) {
+    return new Response('Faltan campos obligatorios', { status: 400 });
+  }
+
+  try {
+    const db = getFirestore(app);
+    const chatRef = db.collection('historial_chat').doc(userUid);
+    const doc = await chatRef.get();
+
+    if (!doc.exists) {
+      return new Response('No hay conversaciones', { status: 404 });
+    }
+
+    const data = doc.data();
+    return new Response(JSON.stringify(data), { status: 200 });
+  } catch (error) {
+    console.error('Error al obtener el historial de conversaciones:', error);
+    return new Response('Error al obtener el historial', { status: 500 });
   }
 };

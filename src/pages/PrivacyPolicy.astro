@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '@fontsource/anton';
+import '@fontsource-variable/quicksand';
+import '@fontsource-variable/outfit';
+---
+
+<Layout title="Política de Privacidad | ContigoBot">
+  <Header
+    texto1="Registrarse"
+    link1="register"
+    texto2="Inicio de Sesión"
+    link2="signin"
+    texto3="Términos y Condiciones"
+    link3="TermsAndConditions"
+  />
+
+  <section class="body">
+    <section class="sec0">
+      <div class="container">
+        <p class="actualizacion">Actualizado: 5 de octubre de 2024</p>
+        <h1 class="title">Política de Privacidad</h1>
+        <p class="description">
+          En ContigoBot, nos comprometemos a proteger tu privacidad. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos tu información personal cuando utilizas nuestro servicio.
+        </p>
+
+        <h2 class="title2">Información que recopilamos</h2>
+        <p class="description">
+          Recopilamos información que tú nos proporcionas directamente, como tu nombre y dirección de correo electrónico. También podemos recopilar información sobre tu uso del servicio a través de cookies y tecnologías similares.
+        </p>
+
+        <h2 class="title2">Uso de la información</h2>
+        <p class="description">
+          Utilizamos la información recopilada para:
+          <ul class="list">
+            <li>Proporcionar y mejorar nuestros servicios.</li>
+            <li>Comunicarte sobre actualizaciones y promociones.</li>
+            <li>Personalizar tu experiencia con ContigoBot.</li>
+          </ul>
+        </p>
+
+        <h2 class="title2">Compartición de la información</h2>
+        <p class="description">
+          No vendemos ni alquilamos tu información personal a terceros. Solo compartimos tu información en las siguientes circunstancias:
+          <ul class="list">
+            <li>Cuando es necesario para proporcionar el servicio.</li>
+            <li>Con tu consentimiento explícito.</li>
+            <li>Para cumplir con la ley o responder a procesos legales.</li>
+          </ul>
+        </p>
+
+        <h2 class="title2">Seguridad de la información</h2>
+        <p class="description">
+          Implementamos medidas de seguridad para proteger tu información personal. Sin embargo, ninguna transmisión de datos por Internet es completamente segura. No podemos garantizar la seguridad absoluta de la información transmitida.
+        </p>
+
+        <h2 class="title2">Tus derechos</h2>
+        <p class="description">
+          Tienes derechos sobre tu información personal, incluyendo el derecho a acceder, corregir o eliminar tu información. Si deseas ejercer alguno de estos derechos, contáctanos a través del correo electrónico proporcionado a continuación.
+        </p>
+
+        <h2 class="title2">Cambios en esta política</h2>
+        <p class="description">
+          Nos reservamos el derecho a actualizar esta Política de Privacidad en cualquier momento. Te notificaremos sobre cambios importantes a esta política mediante un aviso en nuestro sitio web.
+        </p>
+
+        <h2 class="title2">Contacto</h2>
+        <p class="description">
+          Si tienes preguntas o inquietudes sobre esta Política de Privacidad, puedes contactarnos en <a href="mailto:contigobotia@gmail.com">contigobotia@gmail.com</a>.
+        </p>
+      </div>
+    </section>
+  </section>
+
+  <Footer />
+
+  <style>
+    body {
+      font-family: 'Outfit Variable', sans-serif;
+      margin: 0;
+      padding: 0; /* Eliminar padding del body */
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    h1.title {
+      color: #000000;
+      font-family: 'Quicksand Variable', sans-serif;
+      text-align: center;
+      padding-bottom: 50px;
+      font-weight: bold;
+      font-size: 4.2rem;
+    }
+
+    h2.title2 {
+      color: #000000;
+      font-family: 'Quicksand Variable', sans-serif;
+      text-align: justify;
+      font-weight: bold;
+      font-size: 25px;
+      padding-bottom: 16px;
+    }
+
+    .actualizacion {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 20px;
+      font-family: 'Outfit Variable', sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .description {
+      text-align: justify;
+      font-family: 'Outfit Variable', sans-serif;
+      margin-bottom: 20px;
+      font-size: 17px;
+    }
+
+    .description a {
+      text-decoration: underline;
+      color: #0056b3; 
+      font-family: 'Outfit Variable', sans-serif;
+    }
+
+    .list {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+      font-family: 'Outfit Variable', sans-serif;
+    }
+
+    .list li {
+      margin-bottom: 10px;
+      font-family: 'Outfit Variable', sans-serif;
+    }
+
+    .list li::before {
+      content: "•";
+      color: #000000;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: 5px;
+    }
+  </style>
+</Layout>

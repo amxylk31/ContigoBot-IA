@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '@fontsource/anton';
+import '@fontsource-variable/quicksand';
+import '@fontsource-variable/outfit';
+---
+
+<Layout title="Condiciones de Uso | ContigoBot">
+  <Header
+    texto1="Registrarse"
+    link1="register"
+    texto2="Inicio de Sesión"
+    link2="signin"
+    texto3="Términos y Condiciones"
+    link3="TermsAndConditions"
+  />
+
+  <section class="body">
+    <section class="sec0">
+      <div class="container">
+        <p class="actualizacion">Actualizado: 5 de octubre de 2024</p>
+        <h1 class="title">Condiciones de Uso</h1>
+        <p class="description">
+          Bienvenido a ContigoBot, tu asistente de bienestar emocional diseñado para proporcionar apoyo y consejos prácticos a estudiantes universitarios que enfrentan estrés, ansiedad y otros problemas emocionales. Al utilizar nuestro chatbot, aceptas los siguientes términos y condiciones de uso:
+        </p>
+
+        <h2 class="title2">Propósito del servicio</h2>
+        <p class="description">
+          ContigoBot está diseñado para ofrecer orientación y recursos de bienestar emocional. No sustituye el asesoramiento, diagnóstico o tratamiento profesional. Si estás pasando por una crisis emocional o necesitas ayuda inmediata, por favor contacta a un profesional de la salud mental o llama a los servicios de emergencia.
+        </p>
+
+        <h2 class="title2">Uso del servicio</h2>
+        <ul class="list">
+          <li>El uso de ContigoBot es gratuito y voluntario.</li>
+          <li>No se permite utilizar el servicio para fines ilícitos, malintencionados o abusivos.</li>
+          <li>ContigoBot está destinado a mayores de 18 años.</li>
+        </ul>
+
+        <h2 class="title2">Privacidad y seguridad</h2>
+        <p class="description">
+          Tu privacidad es importante para nosotros. Los datos personales que compartes con ContigoBot serán tratados de acuerdo con nuestra <a href="/PrivacyPolicy">Política de Privacidad</a>. Nos comprometemos a proteger tu información, pero no garantizamos la seguridad absoluta de los datos transmitidos electrónicamente.
+        </p>
+
+        <h2 class="title2">Limitaciones del servicio</h2>
+        <ul class="list">
+          <li>El servicio de ContigoBot se proporciona "tal cual". No garantizamos la disponibilidad continua o ininterrumpida del servicio.</li>
+          <li>Nos reservamos el derecho a modificar, suspender o discontinuar el servicio en cualquier momento sin previo aviso.</li>
+          <li>No somos responsables de cualquier daño, pérdida o inconveniente que pueda surgir del uso de nuestro chatbot.</li>
+        </ul>
+
+        <h2 class="title2">Propiedad intelectual</h2>
+        <p class="description">
+          ContigoBot, su diseño, funcionalidad y contenido son propiedad de sus respectivos titulares. Todos los derechos están reservados. No está permitido copiar, modificar, distribuir o utilizar el contenido de ContigoBot sin autorización previa.
+        </p>
+
+        <h2 class="title2">Modificaciones</h2>
+        <p class="description">
+          Nos reservamos el derecho a actualizar o modificar estos términos y condiciones en cualquier momento. Te recomendamos revisar periódicamente esta página para estar al tanto de los cambios.
+        </p>
+
+        <h2 class="title2">Contacto</h2>
+        <p class="description">
+          Si tienes preguntas o comentarios sobre estos términos, puedes contactarnos en <a href="mailto:contigobotia@gmail.com">contigobotia@gmail.com</a>.
+        </p>
+      </div>
+    </section>
+  </section>
+
+  <Footer />
+
+  <style>
+    body {
+      font-family: 'Outfit Variable', sans-serif;
+      margin: 0;
+      padding: 0; /* Eliminar padding del body */
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    h1.title {
+      color: #000000;
+      font-family: 'Quicksand Variable', sans-serif;
+      text-align: center;
+      padding-bottom: 50px;
+      font-weight: bold;
+      font-size: 4.2rem;
+    }
+
+    h2.title2 {
+      color: #000000;
+      font-family: 'Quicksand Variable', sans-serif;
+      text-align: justify;
+      font-weight: bold;
+      font-size: 25px;
+      padding-bottom: 16px;
+    }
+
+    .actualizacion {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 20px;
+      font-family: 'Outfit Variable', sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .description {
+      text-align: justify;
+      font-family: 'Outfit Variable', sans-serif;
+      margin-bottom: 20px;
+      font-size: 17px;
+    }
+    .description a{
+      text-align: justify;
+      font-family: 'Outfit Variable', sans-serif;
+      margin-bottom: 20px;
+      font-size: 17px;
+    }
+
+    .list {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+      font-family: 'Outfit Variable', sans-serif;
+    }
+
+    .list li {
+      margin-bottom: 10px;
+      font-family: 'Outfit Variable', sans-serif;
+    }
+
+    .list li::before {
+      content: "•";
+      color: #000000;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: 5px;
+    }
+  </style>
+</Layout>
