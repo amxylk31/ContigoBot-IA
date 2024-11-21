@@ -1,4 +1,4 @@
-![alt text](140_1x_shots_so.png)
+![alt text](34shots_so.png)
 
 # Descripción del Proyecto
 ContigoBot es una plataforma web diseñada para ofrecer apoyo emocional y bienestar psicológico a estudiantes universitarios. A través de un chatbot impulsado por inteligencia artificial, los estudiantes pueden acceder a recursos y consejos para manejar problemas comunes como el estrés, la ansiedad y la depresión. El proyecto se centra en proporcionar una herramienta accesible, segura y efectiva para ayudar a los estudiantes a enfrentar los desafíos emocionales de la vida universitaria.

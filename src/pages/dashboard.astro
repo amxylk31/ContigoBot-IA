@@ -22,22 +22,16 @@ if (!user) {
 ---
 
 <Layout title="dashboard">
-    <main class="cont-fondo">
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-        />
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    </main>
     <Header
         texto1={user.displayName}
         texto2="Términos y Condiciones"
-        link2="/src/pages/Terms&Conditions.astro"
+        link2="TermsAndConditions"
         texto3="Cerrar Sesión"
         link3="/api/auth/signout"
     />
-    <Chatbot uid={user.uid} client:load/>
+    <div style={{ display: 'flex' }}>
+      <Chatbot uid={user.uid} client:load />
+  </div>
 </Layout>
 
 
