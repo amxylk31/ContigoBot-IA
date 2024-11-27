@@ -247,7 +247,17 @@ body {
 .message-bubble.ai p{
   font-family: 'Outfit Variable', sans-serif;
 }
+.message-bubble.ai li{
+  font-family: 'Outfit Variable', sans-serif;
+}
 
+.message-bubble.ai ul{
+  font-family: 'Outfit Variable', sans-serif;
+}
+
+.message-bubble.ai strong{
+  font-family: 'Outfit Variable', sans-serif;
+}
 .timestamp {
   font-size: 0.75rem;
   color: #4e4d4d;
